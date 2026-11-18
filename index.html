@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PGA – Plataforma de Gestão das Atividades</title>
+<style>
+:root{--red:#C41808;--ink:#1a1a1a;--bg:#fff;--soft:#F4F3F0;--mut:#666;--line:#EFEDE6}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+a{color:inherit;text-decoration:none}
+.hero{margin:10px 10px 0;border-radius:18px;overflow:hidden;position:relative;color:#fff;background:#111 url(img/fachada.jpg) center 35%/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.93) 0%,rgba(10,10,10,.74) 52%,rgba(40,15,10,.32) 100%)}
+.hin{position:relative;max-width:1180px;margin:0 auto;padding:64px 24px 96px}
+.tag{display:inline-block;border:1px solid rgba(255,255,255,.55);border-radius:18px;padding:6px 16px;font-size:13px;margin-bottom:20px}
+.hero h1{font-size:clamp(30px,5vw,46px);font-weight:800;line-height:1.1;max-width:760px}
+.hero p{font-size:clamp(15px,2vw,17px);opacity:.9;margin:16px 0 26px;max-width:640px}
+.btn{display:inline-block;font-weight:700;font-size:16px;padding:14px 28px;border-radius:10px;margin:0 12px 10px 0;transition:.15s}
+.btn.red{background:var(--red);color:#fff}.btn.red:hover{background:#a01206}
+.btn.ghost{border:1.5px solid #fff;color:#fff;padding:13px 24px}.btn.ghost:hover{background:#fff;color:#111}
+.wrap{max-width:1180px;margin:-56px auto 0;padding:0 24px 48px;position:relative}
+h2{font-size:22px;font-weight:800;margin-bottom:16px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px}
+.st{border:1px solid #ECE9E1;background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 4px 14px rgba(0,0,0,.09);border-top:4px solid var(--red)}
+.st .n{width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.st b{font-size:16px}.st .d{font-size:13px;color:var(--mut);margin-top:4px}
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:16px;margin-bottom:36px}
+.bx{border:1px solid #ECE9E1;background:#fff;border-radius:14px;padding:22px 26px;box-shadow:0 4px 14px rgba(0,0,0,.07)}
+.bx h2{font-size:20px}
+.q{border-bottom:1px solid var(--line)}.q:last-child{border:none}
+.q button{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:12px;padding:14px 0;cursor:pointer;font-weight:600;font-size:15px}
+.q button:hover,.q.open button{color:var(--red)}
+.q button i{font-style:normal;font-size:22px;line-height:1;color:var(--red)}
+.q .a{display:none;padding:0 0 14px;font-size:14px;color:#555}
+.q.open .a{display:block}
+.doc{display:flex;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}.doc:last-child{border:none}
+.doc b{flex:0 0 40px;height:40px;border-radius:8px;background:#FCEBEB;color:var(--red);font-size:11px;display:flex;align-items:center;justify-content:center}
+.doc .t{font-weight:600;font-size:14px}.doc .s{font-size:12.5px;color:#777}.doc span{margin-left:auto;font-size:13px;font-weight:600;color:var(--red)}
+.doc:hover .t{color:var(--red)}
+.two.avisos{grid-template-columns:1.4fr 1fr}
+.vids{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;margin-bottom:36px}
+.vd{border-radius:14px;background:linear-gradient(135deg,#2a2a2a,#111);color:#fff;min-height:190px;position:relative;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+.vd video{width:100%;height:100%;display:block;background:#000;object-fit:cover;min-height:190px}
+.vd .cap{position:absolute;left:18px;bottom:14px;font-size:13px}
+.vd.soon .pl{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:#555;display:flex;align-items:center;justify-content:center;font-size:22px}
+.vtt{font-size:13px;color:var(--mut);margin:-8px 0 36px}
+.nw{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}.nw:last-child{border:none}
+.dt{flex:0 0 58px;text-align:center;background:var(--soft);border-radius:8px;padding:6px;font-size:11px;color:var(--mut)}.dt b{display:block;font-size:20px;color:var(--red)}
+.nw .t{font-weight:600;font-size:14px}.nw .s{font-size:12.5px;color:#777}
+.ev{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.ev:last-child{border:none}
+.ev i{font-style:normal;background:#EAF3DE;color:#27500A;border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;height:fit-content}
+.ct{background:#000;color:#fff;border-radius:14px;padding:26px 32px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.ct b{font-size:18px}.ct .s{font-size:13px;opacity:.8;margin-top:3px}
+.ct .m{margin-left:auto;background:var(--red);padding:13px 24px;border-radius:10px;font-weight:700}
+footer{text-align:center;font-size:12px;color:#888;padding:0 24px 28px}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}.two,.two.avisos{grid-template-columns:1fr}.vids{grid-template-columns:1fr}.ct .m{margin-left:0}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}.hin{padding:44px 18px 84px}.wrap{padding:0 14px 40px}}
+
+.view{display:none}.view.on{display:block}
+.vh{background:#000;color:#fff;padding:36px 24px 70px;text-align:left}
+.vh>*{max-width:1180px;margin-left:auto;margin-right:auto}
+.vh h1{font-size:clamp(26px,4vw,34px);font-weight:800}.vh p{opacity:.85;margin-top:8px;padding-right:30%}
+.vh .back{display:block;font-size:14px;font-weight:600;margin-bottom:14px;color:#fff;opacity:.9}.vh .back:hover{opacity:1;text-decoration:underline}
+.vb{max-width:1180px;margin:-44px auto 0;padding:0 24px 48px}
+.card{background:#fff;border-radius:14px;padding:22px 26px;margin-bottom:16px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.ch{display:flex;align-items:center;gap:12px;margin-bottom:14px}.ch h3{font-size:17px;font-weight:700}.ch em{margin-left:auto;font-size:12px;color:#777;font-style:normal}
+.num{width:28px;height:28px;background:var(--red);color:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:0 0 28px}
+.stp{padding-left:22px}.stp li{margin:7px 0;font-size:15px}.txt{font-size:15px}.note{font-size:13px;color:var(--mut);padding:4px 4px 0}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.g3 label{display:block;font-size:12px;color:#777;margin-bottom:5px}
+.ro{background:var(--bg);border-radius:8px;padding:10px 12px;font-size:14px;min-height:40px}.ro.tall{min-height:84px;color:#555}
+.decl{display:flex;gap:10px;align-items:center}.cb{width:20px;height:20px;border-radius:5px;background:var(--red);color:#fff;font-size:13px;display:flex;align-items:center;justify-content:center;flex:0 0 20px}
+.qq{font-size:14px;font-weight:600;margin-bottom:10px}
+.chip{display:inline-block;border:1px solid #D9D7CF;border-radius:18px;padding:6px 14px;font-size:13px;background:#fff;margin:0 6px 8px 0}.chip.on{background:#000;color:#fff;border-color:#000}
+@media(max-width:700px){.g3{grid-template-columns:1fr}.vh p{padding-right:0}}
+</style>
+</head>
+<body>
+
+<div id="home">
+<header class="hero"><div class="hin">
+  <span class="tag">Procuradoria Geral do Estado de São Paulo</span>
+  <h1>Plataforma de Gestão das Atividades – PGA</h1>
+  <p>Cadastro, Termo de Adesão, Plano de Atuação e Monitoramento do teletrabalho, em um só lugar. Acompanhe cada etapa e tire suas dúvidas.</p>
+  <a class="btn red" id="lnkApp" href="https://apps.powerapps.com/play/e/default-3a78b0cd-7c8e-4929-83d5-190a6cc01365/a/75335a59-7420-4a8d-bba6-5692051449ce?tenantId=3a78b0cd-7c8e-4929-83d5-190a6cc01365&amp;source=portal" target="_blank" rel="noopener">Acessar a plataforma →</a>
+</div></header>
+
+<main class="wrap">
+
+<section class="steps">
+  <div class="st"><div class="n">1</div><b>Cadastro</b><div class="d">Informe seus dados. É obrigatório para todos os servidores.</div></div>
+  <div class="st"><div class="n">2</div><b>Termo de Adesão</b><div class="d">Formalize a adesão ao teletrabalho.</div></div>
+  <div class="st"><div class="n">3</div><b>Plano de Atuação</b><div class="d">Pactue as tarefas com a sua chefia.</div></div>
+  <div class="st"><div class="n">4</div><b>Monitoramento</b><div class="d">Registre as metas e o resultado de cada semestre.</div></div>
+</section>
+
+<section class="two" id="faq">
+  <div class="bx">
+    <h2>Perguntas frequentes</h2>
+    <div class="q open"><button><span>Quem precisa preencher o Cadastro?</span><i>–</i></button><div class="a">Todos os servidores, inclusive quem ainda não pretende aderir ao teletrabalho. O Cadastro é a primeira etapa da jornada e é analisado pela chefia imediata.</div></div>
+    <div class="q"><button><span>Como sei em que etapa eu estou?</span><i>+</i></button><div class="a">Na tela inicial da plataforma você vê a sua jornada, com o status de cada etapa e o próximo passo a seguir. Você também recebe um e-mail a cada decisão.</div></div>
+    <div class="q"><button><span>Posso preencher o Termo de Adesão antes de o Cadastro ser aprovado?</span><i>+</i></button><div class="a">Não. As etapas são sequenciais: o Termo só é liberado depois da aprovação do Cadastro, e o Plano só depois da aprovação do Termo.</div></div>
+    <div class="q"><button><span>O que acontece se o meu Plano de Atuação for indeferido?</span><i>+</i></button><div class="a">O plano segue para a Coordenadoria de Administração (CA), que pode deferir a solicitação ou manter o indeferimento. Você é avisado por e-mail. Se a CA deferir, o Monitoramento é liberado.</div></div>
+    <div class="q"><button><span>A chefia pediu ajustes no meu Plano. E agora?</span><i>+</i></button><div class="a">O plano fica como "deferimento condicionado". Acesse a plataforma, corrija o que foi solicitado e reenvie para nova análise.</div></div>
+    <div class="q"><button><span>Como funciona o Monitoramento?</span><i>+</i></button><div class="a">É refeito a cada semestre. Você registra as metas e o resultado do período, e a chefia atesta o cumprimento (integralmente, parcialmente ou não atestado).</div></div>
+    <div class="q"><button><span>E se o meu Monitoramento for atestado parcialmente ou não atestado?</span><i>+</i></button><div class="a">O caso é encaminhado à CA, que decide entre manter o plano, pedir que você refaça o Plano de Atuação ou, nos casos previstos, encerrar a participação no teletrabalho. O resultado chega por e-mail.</div></div>
+    <div class="q"><button><span>Não consigo acessar a plataforma. O que fazer?</span><i>+</i></button><div class="a">Confira se está usando o seu e-mail institucional e, se o problema continuar, escreva para a equipe da plataforma pelo e-mail abaixo, informando o seu nome e o que aparece na tela.</div></div>
+  </div>
+  <div class="bx" id="docs">
+    <h2>Modelos e guias</h2>
+    <a class="doc" href="#/termo"><b>TERMO</b><div><div class="t">Modelo do Termo de Adesão</div><div class="s">Veja o que é preenchido e declarado nesta etapa</div></div><span>Abrir</span></a>
+    <a class="doc" href="#/servidor"><b>GUIA</b><div><div class="t">Guia do servidor</div><div class="s">Passo a passo das 4 etapas</div></div><span>Abrir</span></a>
+    <a class="doc" href="#/chefia"><b>GUIA</b><div><div class="t">Guia da chefia</div><div class="s">Como analisar Cadastro, Termo, Plano e Monitoramento</div></div><span>Abrir</span></a>
+    <a class="doc" href="#/ca"><b>GUIA</b><div><div class="t">Guia da Coordenadoria de Administração</div><div class="s">Manifestações e deliberações</div></div><span>Abrir</span></a>
+  </div>
+  </section>
+
+<section class="two avisos">
+  <div class="bx"><h2>Avisos</h2>
+    <div class="nw"><div class="dt"><b>30</b>NOV</div><div><div class="t">Lançamento oficial da plataforma</div><div class="s">A partir desta data o preenchimento passa a valer para todos os servidores.</div></div></div>
+    <div class="nw"><div class="dt"><b>24</b>NOV</div><div><div class="t">Live para servidores</div><div class="s">Como usar a plataforma, do cadastro ao monitoramento.</div></div></div>
+    <div class="nw"><div class="dt"><b>23</b>NOV</div><div><div class="t">Live para procuradores</div><div class="s">Orientações para chefias e procuradores.</div></div></div>
+  </div>
+  <div class="bx"><h2>Próximos eventos</h2>
+    <div class="ev"><i>23/11</i>Live para procuradores</div>
+    <div class="ev"><i>24/11</i>Live para servidores</div>
+    <div class="ev"><i>30/11</i>Lançamento oficial</div>
+  </div>
+</section>
+
+<section class="ct">
+  <div><b>Ficou com dúvida?</b><div class="s">Escreva para a equipe da plataforma.</div></div>
+  <a class="m" href="mailto:PGE-pga@sp.gov.br">✉ PGE-pga@sp.gov.br</a>
+</section>
+
+</main>
+</div>
+<section class="view" id="v-termo"><div class="vh"><a class="back" href="#/">‹ Voltar</a><h1>Modelo do Termo de Adesão</h1><p>Esta é a tela que você preenche na plataforma. Os exemplos abaixo são ilustrativos.</p></div>
+<div class="vb">
+<div class="card"><div class="ch"><span class="num">1</span><h3>Identificação</h3><em>Preenchido automaticamente</em></div><div class="g3"><div><label>Nome completo</label><div class="ro">Nome do servidor</div></div><div><label>Unidade</label><div class="ro">Unidade de lotação</div></div><div><label>Cargo</label><div class="ro">Cargo do servidor</div></div><div><label>Chefia imediata</label><div class="ro">Nome da chefia</div></div><div><label>Telefone</label><div class="ro">(11) 99999-9999</div></div><div><label>E-mail</label><div class="ro">nome@sp.gov.br</div></div></div></div>
+<div class="card"><div class="ch"><span class="num">2</span><h3>Atividades que serão realizadas em teletrabalho</h3></div><div class="ro tall">Descreva as atividades. Exemplo: elaboração de documentos e relatórios; análise de demandas; atendimento remoto.</div></div>
+<div class="card"><div class="ch"><span class="num">3</span><h3>Benefícios esperados</h3></div><p class="qq">Marque os benefícios esperados com o teletrabalho</p><div><span class="chip on">Otimização do tempo</span><span class="chip on">Foco</span><span class="chip">Qualidade</span><span class="chip">Crescimento profissional</span><span class="chip on">Produtividade</span><span class="chip">Inovação</span><span class="chip">Análise / raciocínio</span><span class="chip">Motivação</span><span class="chip">Outros</span></div></div>
+<div class="card"><div class="ch"><span class="num">4</span><h3>Declaração</h3></div><div class="ro decl"><span class="cb">✓</span> Declaro que li e concordo com as condições do teletrabalho, e que as informações acima são verdadeiras.</div></div>
+<p class="note">Depois de enviar, o Termo segue para a ciência da chefia imediata. A próxima etapa, o Plano de Atuação, só é liberada quando ele é aprovado.</p>
+</div></section><section class="view" id="v-servidor"><div class="vh"><a class="back" href="#/">‹ Voltar</a><h1>Guia do servidor</h1><p>As 4 etapas do teletrabalho, sempre em ordem. Cada etapa só abre quando a chefia aprova a anterior.</p></div><div class="vb">
+<div class="card"><div class="ch"><span class="num">1</span><h3>Cadastro</h3></div><ol class="stp"><li>Seus dados já vêm preenchidos. Confira se estão corretos.</li><li>Preencha as informações complementares e liste suas atividades.</li><li>Marque as ferramentas e as IAs que usa, a modalidade e os dias de teletrabalho.</li><li>Clique em <b>Enviar Cadastro</b>. O botão passa a mostrar “Enviado ✓”.</li><li>A chefia analisa. Se aprovar, o Termo é liberado. Se reprovar, você corrige e reenvia.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">2</span><h3>Termo de Adesão</h3></div><ol class="stp"><li>Confira a identificação.</li><li>Descreva as atividades que serão realizadas em teletrabalho.</li><li>Marque os benefícios esperados.</li><li>Leia a declaração, marque <b>“Declaro que li e concordo”</b> e clique em <b>Enviar Termo para a chefia</b>.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">3</span><h3>Plano de Atuação</h3></div><ol class="stp"><li>Informe o período, a periodicidade e as ferramentas de TI.</li><li>Descreva as tarefas, como será a verificação e os incidentes possíveis.</li><li>Envie para a chefia. Se ela pedir ajustes, corrija e reenvie.</li><li>Se o plano for indeferido, ele segue para a Coordenadoria de Administração, que decide. Você é avisado por e-mail.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">4</span><h3>Monitoramento</h3></div><ol class="stp"><li>A cada semestre, registre o período e as metas previstas e realizadas.</li><li>O sistema calcula o índice de cumprimento de cada meta.</li><li>Clique em <b>Enviar Monitoramento</b>. A chefia atesta e conclui a avaliação.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">?</span><h3>Acompanhamento e dúvidas</h3></div><p class="txt">Na página inicial da plataforma você acompanha o status de cada etapa (Aprovado, Em análise ou Bloqueado) e recebe um e-mail a cada decisão. Em caso de dúvida, abra <b>Dúvidas e Orientações</b> na própria plataforma ou escreva para <b>PGE-pga@sp.gov.br</b>.</p></div>
+</div></section><section class="view" id="v-chefia"><div class="vh"><a class="back" href="#/">‹ Voltar</a><h1>Guia da chefia</h1><p>Como analisar as etapas da sua equipe. Você vê no Painel da Chefia o que está aguardando a sua decisão.</p></div><div class="vb">
+<div class="card"><div class="ch"><span class="num">1</span><h3>Cadastro</h3></div><ol class="stp"><li>Abra o cadastro pendente na lista do painel e confira os dados informados.</li><li><b>Aprove</b> para liberar o Termo, ou <b>reprove</b> indicando o motivo. O servidor corrige e reenvia.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">2</span><h3>Termo de Adesão</h3></div><ol class="stp"><li>Confira as atividades descritas e os benefícios esperados.</li><li>Dê a ciência (aprovação) para liberar o Plano de Atuação.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">3</span><h3>Plano de Atuação</h3></div><ol class="stp"><li>Analise as tarefas pactuadas, a verificação e os incidentes previstos.</li><li>Escolha a decisão: <b>deferir</b>, <b>deferir com ajustes</b> (o servidor corrige e reenvia) ou <b>indeferir</b>.</li><li>Em caso de indeferimento, registre o parecer. O plano segue para a Coordenadoria de Administração, que manifesta se defere ou mantém o indeferimento.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">4</span><h3>Monitoramento</h3></div><ol class="stp"><li>Confira as metas, o índice de cumprimento e o resultado registrado pelo servidor.</li><li>Atribua a nota do período, marque as medidas indicadas (nenhuma, orientação, melhoria, advertência, reavaliação ou exclusão) e escreva o parecer.</li><li>Indique o resultado final: integralmente, parcialmente ou não atestado. Nos dois últimos casos, o monitoramento segue para a Coordenadoria de Administração.</li></ol></div>
+<p class="note">Cada decisão gera um e-mail automático para o servidor.</p>
+</div></section><section class="view" id="v-ca"><div class="vh"><a class="back" href="#/">‹ Voltar</a><h1>Guia da Coordenadoria de Administração</h1><p>O Painel da CA reúne o que depende da sua manifestação: planos indeferidos e monitoramentos não integralmente atestados.</p></div><div class="vb">
+<div class="card"><div class="ch"><span class="num">1</span><h3>Planos indeferidos</h3></div><ol class="stp"><li>Abra a aba <b>Planos indeferidos</b> e clique em <b>Manifestar</b>.</li><li>Leia o plano do servidor e o parecer da chefia.</li><li>Escolha <b>Deferir a solicitação</b> (o servidor segue para o Monitoramento) ou <b>Manter o indeferimento</b>.</li><li>Escreva a fundamentação e confirme. O servidor recebe a decisão por e-mail.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">2</span><h3>Monitoramentos</h3></div><ol class="stp"><li>Abra a aba <b>Monitoramentos</b> e clique em <b>Deliberar</b>.</li><li>Analise as metas e a avaliação da chefia.</li><li>Indique a sua análise: <b>Concorda</b>, <b>Concorda parcialmente</b> ou <b>Discorda</b> da avaliação.</li><li>Marque o encaminhamento (arquivamento, acompanhamento, reavaliação ou exclusão), escreva a fundamentação e confirme.</li></ol></div>
+<div class="card"><div class="ch"><span class="num">3</span><h3>O que acontece depois</h3></div><p class="txt">O sistema define o resultado para o servidor conforme o que foi atestado e a sua análise: manutenção do plano, necessidade de refazer o Plano de Atuação, ou encerramento da participação no teletrabalho nos casos previstos. O servidor é avisado por e-mail.</p></div>
+</div></section>
+<footer>Procuradoria Geral do Estado de São Paulo · Plataforma de Gestão das Atividades – PGA</footer>
+
+<script>
+// >>> AJUSTE AQUI: link do app (Power Apps)
+var LINK_APP = "https://apps.powerapps.com/play/e/default-3a78b0cd-7c8e-4929-83d5-190a6cc01365/a/75335a59-7420-4a8d-bba6-5692051449ce?tenantId=3a78b0cd-7c8e-4929-83d5-190a6cc01365&source=portal";
+document.getElementById("lnkApp").setAttribute("href", LINK_APP);
+
+// Sanfona do FAQ: abre uma por vez
+document.querySelectorAll(".q button").forEach(function(b){
+  b.addEventListener("click", function(){
+    var q=b.parentElement, abrir=!q.classList.contains("open");
+    document.querySelectorAll(".q").forEach(function(x){x.classList.remove("open");x.querySelector("i").textContent="+";});
+    if(abrir){q.classList.add("open");b.querySelector("i").textContent="–";}
+  });
+});
+
+// Telas internas (modelo do termo e guias)
+function rota(){
+  var h=location.hash.replace(/^#\/?/,''), home=document.getElementById("home");
+  var alvo=h?document.getElementById("v-"+h):null;
+  document.querySelectorAll(".view").forEach(function(v){v.classList.remove("on");});
+  if(alvo){home.style.display="none";alvo.classList.add("on");window.scrollTo(0,0);}
+  else{home.style.display="block";if(h&&h!=="faq"&&h!=="docs")window.scrollTo(0,0);}
+}
+window.addEventListener("hashchange",rota);rota();
+</script>
+</body>
+</html>
